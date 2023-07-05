@@ -3,7 +3,9 @@ import * as dotenv from "dotenv";
 
 dotenv.config();
 
-const bot = new Client({ intents: ["Guilds", "GuildMessages"] });
+const bot = new Client({
+  intents: ["Guilds", "GuildMessages", "MessageContent"],
+});
 
 bot.on("ready", () => {
   console.log("Client is ready!");
