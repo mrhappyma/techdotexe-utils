@@ -12,6 +12,8 @@ bot.on("ready", () => {
 });
 
 bot.on("messageCreate", async (message) => {
+  if (message.author.id == bot.user!.id) return;
+
   if (message.content.startsWith("set channel name to")) {
     if (message.channel.isDMBased()) return;
     message.channel.setName(
