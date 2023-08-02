@@ -53,6 +53,15 @@ bot.on("messageCreate", async (message) => {
       });
     }
   }
+
+  if (
+    message.content.startsWith("pin this") &&
+    message.reference &&
+    message.pinnable
+  ) {
+    message.pin();
+    message.react("📌");
+  }
 });
 
 bot.login(process.env.DSC_TOKEN);
