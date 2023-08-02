@@ -54,13 +54,12 @@ bot.on("messageCreate", async (message) => {
     }
   }
 
-  if (
-    message.content.startsWith("pin this") &&
-    message.reference &&
-    message.pinnable
-  ) {
-    message.pin();
-    message.react("📌");
+  if (message.content.startsWith("pin this") && message.reference) {
+    const ref = message.channel.messages.cache.get(
+      message.reference.messageId!
+    );
+    ref && ref.pin();
+    ref && message.react("📌");
   }
 });
 
