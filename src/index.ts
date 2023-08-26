@@ -14,10 +14,10 @@ bot.on("ready", () => {
 bot.on("messageCreate", async (message) => {
   if (message.author.id == bot.user!.id) return;
 
-  if (message.content.startsWith("set channel name to")) {
+  if (message.content.startsWith("jarvis set the channel name to")) {
     if (message.channel.isDMBased()) return;
     message.channel.setName(
-      message.content.replace("set channel name to ", "")
+      message.content.replace("jarvis set the channel name to ", "")
     );
   }
 
@@ -54,7 +54,7 @@ bot.on("messageCreate", async (message) => {
   //   }
   // }
 
-  if (message.content.startsWith("pin this") && message.reference) {
+  if (message.content.startsWith("jarvis pin this") && message.reference) {
     const ref = message.channel.messages.cache.get(
       message.reference.messageId!
     );
