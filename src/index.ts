@@ -34,25 +34,25 @@ bot.on("messageCreate", async (message) => {
 
   //theres a better way of doing this but im not doing it
   //correct 24hr time (hours above 12) to 12hr time
-  if (message.content.match(/\b(?:[01]\d|2[0-3]):[0-5]\d\b/g)) {
-    const time = message.content.match(/\b(?:[01]\d|2[0-3]):[0-5]\d\b/g);
-    for (const t of time!) {
-      const [hour, minute] = t.split(":");
-      const hourInt = parseInt(hour);
-      const minuteInt = parseInt(minute);
-      let minuteString: string;
-      if (minuteInt < 10) {
-        minuteString = `0${minuteInt}`;
-      } else {
-        minuteString = `${minuteInt}`;
-      }
-      const newHour = hourInt - 12;
-      message.reply({
-        content: `Didn't you mean ${newHour}:${minuteString} PM?`,
-        allowedMentions: { repliedUser: false },
-      });
-    }
-  }
+  // if (message.content.match(/\b(?:[01]\d|2[0-3]):[0-5]\d\b/g)) {
+  //   const time = message.content.match(/\b(?:[01]\d|2[0-3]):[0-5]\d\b/g);
+  //   for (const t of time!) {
+  //     const [hour, minute] = t.split(":");
+  //     const hourInt = parseInt(hour);
+  //     const minuteInt = parseInt(minute);
+  //     let minuteString: string;
+  //     if (minuteInt < 10) {
+  //       minuteString = `0${minuteInt}`;
+  //     } else {
+  //       minuteString = `${minuteInt}`;
+  //     }
+  //     const newHour = hourInt - 12;
+  //     message.reply({
+  //       content: `Didn't you mean ${newHour}:${minuteString} PM?`,
+  //       allowedMentions: { repliedUser: false },
+  //     });
+  //   }
+  // }
 
   if (message.content.startsWith("pin this") && message.reference) {
     const ref = message.channel.messages.cache.get(
@@ -60,6 +60,18 @@ bot.on("messageCreate", async (message) => {
     );
     ref && ref.pin();
     ref && message.react("📌");
+  }
+
+  if (message.content.startsWith("jarvis americanize the temperature")) {
+    const temp = message.content.replace(
+      "jarvis americanize the temperature ",
+      ""
+    );
+    const fahrenheit = (parseInt(temp) * 9) / 5 + 32;
+    message.reply({
+      content: `${temp}°C is ${fahrenheit}°F`,
+      allowedMentions: { repliedUser: false },
+    });
   }
 });
 
