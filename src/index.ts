@@ -23,7 +23,7 @@ bot.on("messageCreate", async (message) => {
     );
   }
 
-  if (message.content.toLowerCase().includes("indeed")) {
+  if (message.content.toLowerCase().includes("indeed") && !message.content.toLowerCase().includes("indeed.com")) {
     const options = [
       "did you mean <https://indeed.com> ?",
       "are you trying to find a job on <https://indeed.com> ?",
